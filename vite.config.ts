@@ -2,7 +2,9 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-  base: '/gascast/',  // repository name
+export default defineConfig(({ mode }) => {
+  return {
+    plugins: [vue()],
+    base: mode === 'production' ? '/gascast/' : '/',  // Use base path only in production
+  }
 })
